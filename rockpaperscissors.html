@@ -27,29 +27,32 @@
         );
 
         if (playerSelection == "Taş" && computerSelection == "Kağıt") {
-          console.log("Bu turu kazandınız!");
-          return true;
+          console.log("Bu turu kaybettiniz!");
+          return 2;
         } else if (playerSelection == "Taş" && computerSelection == "Taş") {
           console.log("Bu tur berabere!");
+          return 0;
         } else if (playerSelection == "Taş" && computerSelection == "Makas") {
-          console.log("Bu tur kaybettiniz!");
-          return false;
+          console.log("Bu tur kazandınız!");
+          return 1;
         } else if (playerSelection == "Kağıt" && computerSelection == "Kağıt") {
           console.log("Bu tur berabere!");
+          return 0;
         } else if (playerSelection == "Kağıt" && computerSelection == "Taş") {
           console.log("Bu turu kazandınız!");
-          return true;
+          return 1;
         } else if (playerSelection == "Kağıt" && computerSelection == "Makas") {
           console.log("Bu tur kaybettiniz!");
-          return false;
+          return 2;
         } else if (playerSelection == "Makas" && computerSelection == "Kağıt") {
           console.log("Bu turu kazandınız!");
-          return true;
+          return 1;
         } else if (playerSelection == "Makas" && computerSelection == "Taş") {
           console.log("Bu tur kaybettiniz!");
-          return false;
+          return 2;
         } else if (playerSelection == "Makas" && computerSelection == "Makas") {
           console.log("Bu tur berabere!");
+          return 0;
         } else {
           console.log("Bir yerde bir yanlışlık var.");
         }
@@ -57,23 +60,42 @@
       function game() {
         let playerScore = 0;
         let compScore = 0;
-        for (let i = 0; i < 5; i++) {
+        for (let i = 1; i <= 5; i++) {
           console.log(i + ". Tur");
 
-          if (playRound() === true) {
+          score = playRound();
+
+          if (score === 1) {
             playerScore = playerScore + 1;
             console.log(
               "Siz :" + playerScore + " " + "Bilgisayar :" + compScore
             );
-            return;
-          } else if (playRound() === false) {
+          } else if (score === 2) {
             compScore = compScore + 1;
             console.log(
               "Siz :" + playerScore + " " + "Bilgisayar :" + compScore
             );
-            return;
+          } else if (score === 0) {
+            console.log(
+              "Skor değişmedi. Siz :" +
+                playerScore +
+                " " +
+                "Bilgisayar :" +
+                compScore
+            );
           } else {
             console.log("Bir şeyler yanlış gitti");
+          }
+
+          if (i === 5) {
+            if (playerScore > compScore) {
+              console.log("Tebrikler, oyunu kazandınız!");
+            } else if (compScore > playerScore) {
+              console.log("Oyunu kaybettiniz.");
+            } else {
+              console.log("Oyun berabere");
+            }
+          } else {
           }
         }
       }
