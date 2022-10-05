@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Random canvas circles</title>
+    <script
+      type="text/javascript"
+      src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=RetVePMZechDyGdGRaGvHvmU3Mpdqh7hY6oFFFXc8__aaNy8IIhTqcCiS_7qGKWAtcoV0XwSHmECVeJFord58uaWfP6AVs-lgK08ZVmbsTjwHPkw0a1ZWYOrVveGtMzG_wcgikVXCinoZ6QHqA2rJYQsolff-5YkPJknmsPk9aA"
+      charset="UTF-8"
+    ></script>
+    <style>
+      html {
+        width: 100%;
+        height: inherit;
+      }
+
+      canvas {
+        display: block;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      button {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <button>Update</button>
+
+    <canvas></canvas>
+
+    <script>
+      const btn = document.querySelector("button");
+      const canvas = document.querySelector("canvas");
+      const ctx = canvas.getContext("2d");
+
+      let WIDTH = document.documentElement.clientWidth;
+      let HEIGHT = document.documentElement.clientHeight;
+
+      canvas.width = WIDTH;
+      canvas.height = HEIGHT;
+
+      function random(number) {
+        return Math.floor(Math.random() * number);
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+        for (let i = 0; i < 100; i++) {
+          ctx.beginPath();
+          ctx.fillStyle = "rgba(255,255,0,0.5)";
+          ctx.arc(random(WIDTH), random(HEIGHT), random(50), 0, 2 * Math.PI);
+          ctx.fill();
+        }
+      }
+
+      btn.addEventListener("click", draw);
+    </script>
+  </body>
+</html>
