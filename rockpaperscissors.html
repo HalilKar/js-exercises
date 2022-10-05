@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function getComputerChoice() {
+        let results = ["Taş", "Kağıt", "Makas"];
+        return results[Math.floor(Math.random() * results.length)];
+      }
+      /* console.log(getComputerChoice()); */
+
+      function playRound() {
+        let playerSelection = prompt("Taş mı, Kağıt mı, Makas mı?");
+        let computerSelection = getComputerChoice();
+        console.log(
+          "Siz: " +
+            playerSelection +
+            " " +
+            "Bilgisayar: " +
+            "" +
+            computerSelection
+        );
+
+        if (playerSelection == "Taş" && computerSelection == "Kağıt") {
+          console.log("Bu turu kazandınız!");
+          return true;
+        } else if (playerSelection == "Taş" && computerSelection == "Taş") {
+          console.log("Bu tur berabere!");
+        } else if (playerSelection == "Taş" && computerSelection == "Makas") {
+          console.log("Bu tur kaybettiniz!");
+          return false;
+        } else if (playerSelection == "Kağıt" && computerSelection == "Kağıt") {
+          console.log("Bu tur berabere!");
+        } else if (playerSelection == "Kağıt" && computerSelection == "Taş") {
+          console.log("Bu turu kazandınız!");
+          return true;
+        } else if (playerSelection == "Kağıt" && computerSelection == "Makas") {
+          console.log("Bu tur kaybettiniz!");
+          return false;
+        } else if (playerSelection == "Makas" && computerSelection == "Kağıt") {
+          console.log("Bu turu kazandınız!");
+          return true;
+        } else if (playerSelection == "Makas" && computerSelection == "Taş") {
+          console.log("Bu tur kaybettiniz!");
+          return false;
+        } else if (playerSelection == "Makas" && computerSelection == "Makas") {
+          console.log("Bu tur berabere!");
+        } else {
+          console.log("Bir yerde bir yanlışlık var.");
+        }
+      }
+      function game() {
+        let playerScore = 0;
+        let compScore = 0;
+        for (let i = 0; i < 5; i++) {
+          console.log(i + ". Tur");
+
+          if (playRound() === true) {
+            playerScore = playerScore + 1;
+            console.log(
+              "Siz :" + playerScore + " " + "Bilgisayar :" + compScore
+            );
+            return;
+          } else if (playRound() === false) {
+            compScore = compScore + 1;
+            console.log(
+              "Siz :" + playerScore + " " + "Bilgisayar :" + compScore
+            );
+            return;
+          } else {
+            console.log("Bir şeyler yanlış gitti");
+          }
+        }
+      }
+      game();
+    </script>
+  </body>
+</html>
